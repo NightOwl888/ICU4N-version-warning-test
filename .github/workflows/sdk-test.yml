@@ -35,7 +35,7 @@ jobs:
           dotnet --version
 
       - name: Restore
-        run: dotnet restore Test.csproj
+        run: dotnet restore ICU4N-version-warning-test.csproj
 
       - name: Build
         run: dotnet build ICU4N-version-warning-test.csproj -c Release -v:n
