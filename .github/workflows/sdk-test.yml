@@ -1,0 +1,41 @@
+name: ICU4N SDK Version Warning Test
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        sdk:
+          - "8.0.100"
+          - "9.0.100"
+          - "9.0.200"
+          - "9.0.300"
+          - "10.0.100"
+          - "11.0.100-preview.1"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.sdk }}
+          dotnet-quality: preview
+
+      - name: Display SDK
+        run: |
+          echo "SDK:"
+          dotnet --version
+
+      - name: Restore
+        run: dotnet restore Test.csproj
+
+      - name: Build
+        run: dotnet build ICU4N-version-warning-test.csproj -c Release -v:n
