@@ -18,7 +18,7 @@ jobs:
           - "9.0.200"
           - "9.0.300"
           - "10.0.100"
-          - "11.0.x"
+          - "11.0.100-preview.4.26230.115"
 
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +30,21 @@ jobs:
           dotnet-quality: preview
 
       - name: Display SDK
+        run: |
+          echo "SDK:"
+          dotnet --version
+
+      - name: Pin SDK
+        run: |
+          cat > global.json <<EOF
+          {
+            "sdk": {
+              "version": "${{ matrix.sdk }}"
+            }
+          }
+          EOF
+
+      - name: Display Pinned SDK
         run: |
           echo "SDK:"
           dotnet --version
