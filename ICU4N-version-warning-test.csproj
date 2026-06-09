@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ICU4N" Version="60.1.0-alpha.448.gb28e610c5b" />
+    <PackageReference Include="ICU4N" Version="60.1.0-alpha.449.g88112a7865" />
   </ItemGroup>
 
 </Project>
