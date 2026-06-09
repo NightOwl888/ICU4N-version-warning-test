@@ -52,5 +52,11 @@ jobs:
       - name: Restore
         run: dotnet restore ICU4N-version-warning-test.csproj
 
-      - name: Build
-        run: dotnet build ICU4N-version-warning-test.csproj -c Release -v:n
+      - name: Build Normal
+        run: dotnet build ICU4N-version-warning-test.csproj -c Release --no-restore -v:n
+        
+      - name: Build Suppressed
+        run: dotnet build ICU4N-version-warning-test.csproj -c Release --no-restore -v:n -p:ICU4NSuppressDotNetSDKVersionWarnings=true
+        
+      - name: Build Suppressed Legacy
+        run: dotnet build ICU4N-version-warning-test.csproj -c Release --no-restore -v:n -p:ICU4NSuppressNuGetBuildTasksPackVersionWarnings=true
